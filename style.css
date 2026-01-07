@@ -1,0 +1,50 @@
+header {
+	display: flex;
+	background-color: gray;
+}
+
+nav {
+	display: flex;
+	background-color: mediumseagreen;
+}
+
+.main-div {
+	display: flex;
+	justify-content: center;
+
+	& > div {
+		display: flex;
+		flex-direction: column;
+
+		& aside {
+			display: flex;
+			justify-content: center;
+			background-color: darkkhaki;
+		}
+
+		& main {
+			display: flex;
+			flex-direction: column;
+			background-color: rebeccapurple;
+		}
+	}
+}
+
+footer {
+	display: flex;
+	background-color: orange;
+}
+
+// app is mobile first, so the default styles are fo small screens
+@media (min-width: 500px){
+	.main-div {
+
+		& > div {
+			flex-direction: row;
+
+			& aside {
+				flex-direction: column;
+			}
+		}
+	}
+}
