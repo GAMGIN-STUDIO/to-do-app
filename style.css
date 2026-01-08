@@ -42,7 +42,7 @@ nav {
 				font-style: italic;
 				font-weight: 600;
 				font-family: Georgia, 'Times New Roman', Times, serif;
-				transition: all 0.5s ease-out;
+				transition: all 0.1s linear;
 			}
 
 			& #task-content.empty::placeholder {
@@ -55,6 +55,13 @@ nav {
 			display: flex;
 			flex-direction: column;
 			background-color: rebeccapurple;
+
+			& > div {
+
+				& .task.done {
+					text-decoration: line-through;
+				}
+			}
 		}
 	}
 }

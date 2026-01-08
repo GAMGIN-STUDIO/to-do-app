@@ -9,13 +9,24 @@ addBut.addEventListener("click", () => {
 		contentBox.classList.add("empty");
 		setTimeout(() => {
 			contentBox.classList.remove("empty");
-		}, 1000);
+		}, 250);
 		// exit
 		return;
 	};
-	// create new task element and add to main
-	const newTask = document.createElement("div");
+	// create new task element with checkbox and add to main
+	const newTaskBox = document.createElement("div");
+	const newTask = document.createElement("span");
+	const newCheckbox = document.createElement("input");
+	newCheckbox.type = "checkbox";
 	newTask.classList.add("task");
 	newTask.innerText =  contentBox.value;
-	document.querySelector("main").prepend(newTask);
+	newTaskBox.appendChild(newCheckbox);
+	newTaskBox.appendChild(newTask);
+	document.querySelector("main").prepend(newTaskBox);
+	// connect checkbox to task crossing = task is done
+	newCheckbox.addEventListener("change", () => {
+		newTask.classList.toggle("done");
+	})
+	// clear content box
+	contentBox.value = "";
 });
