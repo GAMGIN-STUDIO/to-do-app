@@ -39,6 +39,8 @@ nav {
 			background-color: cadetblue;
 
 			& #task-content {
+				width: 25ch;   /* cca 25 znaků */
+  				height: 3em;   /* cca 4 řádky */
 				flex-grow: 1;
 
 				color: black;
@@ -62,6 +64,8 @@ nav {
 		}
 
 		& main {
+			min-width: 160px;
+			min-height: 30px;
 			display: flex;
 			flex-direction: column;
 			background-color: rebeccapurple;
@@ -94,6 +98,30 @@ footer {
 
 			& aside {
 				flex-direction: column;
+			}
+
+			& aside.content {
+
+				& #task-content {
+					width: 30ch;   /* cca 30 znaků */
+  					height: 4em;   /* cca 4 řádků */
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 750px){
+		.main-div {
+
+		& > div {
+
+			& aside.content {
+
+				& #task-content {
+					width: 50ch;   /* cca 50 znaků */
+  					height: 5em;   /* cca 5 řádků */
+				}
 			}
 		}
 	}
