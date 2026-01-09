@@ -29,4 +29,36 @@ addBut.addEventListener("click", () => {
 	})
 	// clear content box
 	contentBox.value = "";
+	// scenario for for deleting or editing tasks
+	newTask.addEventListener("click", () => {
+		// toogle selected class
+		newTask.classList.toggle("selected");
+		// wait for click on delete or edit button
+		const delBut = document.getElementById("del-but");
+		const editBut = document.getElementById("edit-but");
+		// delete button functionality
+		delBut.addEventListener("click", () => {
+			if(newTask.classList.contains("selected")){
+				newTaskBox.remove();
+			}
+		});
+		// edit button functionality
+		editBut.addEventListener("click", () => {
+			// make sure only one task is selected
+			const allTasks = document.querySelectorAll(".task");
+			let selectedCound = 0;
+			allTasks.forEach((task) => {
+				if(task.classList.contains("selected")){
+					selectedCound++;
+				}
+			});
+			// if more than one selected, exit
+			if(selectedCound > 1) return;
+			// put task content to content box and remove old task
+			if(newTask.classList.contains("selected")){
+				contentBox.value = newTask.innerText;
+				newTaskBox.remove();
+			}
+		});
+	});
 });
