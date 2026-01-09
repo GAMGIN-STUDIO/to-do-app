@@ -23,6 +23,16 @@ nav {
 
 		& aside.controls {
 			background-color: darkkhaki;
+
+			& #edit-but, & #del-but {
+				pointer-events: none;
+				color: grey;
+			}
+
+			& #edit-but.active, & #del-but.active {
+				color: black;
+				pointer-events: auto;
+			}
 		}
 
 		& aside.content {

@@ -33,6 +33,8 @@ addBut.addEventListener("click", () => {
 	newTask.addEventListener("click", () => {
 		// toogle selected class
 		newTask.classList.toggle("selected");
+		// make sure about amount of selected tasks
+		checkSelectedTasks();
 		// wait for click on delete or edit button
 		const delBut = document.getElementById("del-but");
 		const editBut = document.getElementById("edit-but");
@@ -40,25 +42,43 @@ addBut.addEventListener("click", () => {
 		delBut.addEventListener("click", () => {
 			if(newTask.classList.contains("selected")){
 				newTaskBox.remove();
+				editBut.classList.remove("active");
+				delBut.classList.remove("active");
 			}
 		});
 		// edit button functionality
 		editBut.addEventListener("click", () => {
-			// make sure only one task is selected
-			const allTasks = document.querySelectorAll(".task");
-			let selectedCound = 0;
-			allTasks.forEach((task) => {
-				if(task.classList.contains("selected")){
-					selectedCound++;
-				}
-			});
-			// if more than one selected, exit
-			if(selectedCound > 1) return;
 			// put task content to content box and remove old task
 			if(newTask.classList.contains("selected")){
 				contentBox.value = newTask.innerText;
 				newTaskBox.remove();
+				editBut.classList.remove("active");
+				delBut.classList.remove("active");
 			}
 		});
 	});
 });
+
+// function for finding out selected tasks
+function checkSelectedTasks(){
+	const allTasks = document.querySelectorAll(".task");
+	let selectedCount = 0;
+	allTasks.forEach((task) => {
+		if(task.classList.contains("selected")){
+			selectedCount++;
+		}
+	});
+	const delBut = document.getElementById("del-but");
+	const editBut = document.getElementById("edit-but");
+	// if one selected, allow edit and delete
+	if(selectedCount === 1){
+		delBut.classList.add("active");
+		editBut.classList.add("active");
+	}else if(selectedCount > 1){
+		delBut.classList.add("active");
+		editBut.classList.remove("active");
+	}else{
+		delBut.classList.remove("active");
+		editBut.classList.remove("active");
+	}
+}
