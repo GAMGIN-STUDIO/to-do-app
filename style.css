@@ -2,6 +2,11 @@
 :root {
 	--basic-min-width: 160px;
 	--basic-width: clamp(var(--basic-min-width), 100vw, 1200px);
+
+	/* desktop */
+	--controls-width: 80px;
+	--ideal-width: 80vw;
+	--max-width: 800px;
 }
 
 body {
@@ -114,17 +119,25 @@ footer {
 			}
 
 			& aside.controls {
-				width: 80px;
+				width: var(--controls-width);
 			}
 
 			& aside.content {
-				width: clamp(var(--basic-min-width), (80vw - 80px), 720px);
+				width: clamp(
+					var(--basic-min-width),
+					calc(var(--ideal-width) - var(--controls-width)),
+					calc(var(--max-width) - var(--controls-width))
+				);
 			}
 
 		}
 
 		& main {
-			width: clamp(var(--basic-min-width), 80vw, 800px);
+			width: clamp(
+				var(--basic-min-width),
+				var(--ideal-width),
+				var(--max-width)
+			);
 		}
 	}
 }
