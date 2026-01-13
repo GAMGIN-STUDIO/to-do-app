@@ -45,12 +45,12 @@ nav {
 			& aside.controls {
 				background-color: darkkhaki;
 
-				& #edit-but, & #del-but {
+				& #add-but, & #edit-but, & #del-but, & #save-but {
 					pointer-events: none;
 					color: grey;
 				}
 
-				& #edit-but.active, & #del-but.active {
+				& #add-but.active, & #edit-but.active, & #del-but.active, & #save-but.active {
 					color: black;
 					pointer-events: auto;
 				}
