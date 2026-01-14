@@ -59,14 +59,14 @@ nav {
 			& aside.content {
 				background-color: cadetblue;
 
-				& #task-content {
+				& #input-content {
 					flex-grow: 1;
 					color: black;
 					font-style: italic;
 					font-family: Georgia, 'Times New Roman', Times, serif;
 				}
 
-				& #task-content::placeholder {
+				& #input-content::placeholder {
 					color: grey;
 					opacity: 0.5;
 					font-style: italic;
@@ -75,7 +75,7 @@ nav {
 					transition: all 0.1s linear;
 				}
 
-				& #task-content.empty::placeholder {
+				& #input-content.empty::placeholder {
 					color: red;
 					font-size: 1.1em;
 				}
