@@ -93,10 +93,14 @@ nav {
 			& .task.done {
 				text-decoration: line-through;
 			}
+		}
 
-			& .task.selected {
-				background-color: beige;
-			}
+		& > div.selected {
+			background-color: beige;
+		}
+
+		& > div.selected.strict {
+			background-color: lightgreen;
 		}
 	}
 }

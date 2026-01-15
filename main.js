@@ -1,3 +1,8 @@
+// GLOBAL
+const globalObject = {
+	strictMode : false,
+	listSelected : []
+}
 
 // BUTTONS
 
@@ -14,7 +19,7 @@ addBut.addEventListener("click", () => {
 		// exit
 		return
 	}else{
-		addElem(contentBox.value);
+		addElem(contentBox.value, undefined);
 	}
 });
 
@@ -27,51 +32,128 @@ delBut.addEventListener("click", () => {
 // button for editing existing to-dos
 const editBut = document.getElementById("edit-but");
 editBut.addEventListener("click", () => {
-
+	// prepare for editing
+	const contentBox = document.getElementById("input-content");
+	const editedTask = globalObject.listSelected[0].children[1];
+	contentBox.value = editedTask.innerText;
+	strictMode(true);
 });
 
 // button for completing editing procces
 const saveBut = document.getElementById("save-but");
 saveBut.addEventListener("click", () => {
-
+	const contentBox = document.getElementById("input-content");
+	// becareful
+	if(contentBox.value !== ''){
+		// finish editing - elements part
+		const id = globalObject.listSelected[0].id;
+		const editedTask = globalObject.listSelected[0].children[1];
+		editedTask.innerText = contentBox.value;
+		// finish editing - data part
+		const fullData = callData();
+		for(const dataObject of fullData.list){
+			if(dataObject.id === id){
+				dataObject.value = contentBox.value;
+			}
+		}
+		saveData(fullData);
+	}
+	// end of editing
+	contentBox.value = '';
+	strictMode(false);
 });
 
 
 // ELEMENTS MANAGMENT
 
-function addElem(data){
+function addElem(data, initDataObject){
 	// data managment phase
-	objectID = generateID();
-	dataObject = {
-		id : objectID,
-		value : data,
-		isDone : false,
-		order : Number
+	const objectID = initDataObject ? initDataObject.id : generateID();
+	if(!initDataObject){
+		dataObject = {
+			id : objectID,
+			value : data,
+			isDone : false,
+			order : Number
+		}
+		fullData = callData();
+		fullData.list.push(dataObject);
+		fullData.amount++;
+		saveData(fullData);
+		const amount = document.getElementById('amount');
+		amount.innerText = fullData.amount;
 	}
-	fullData = callData();
-	fullData.list.push(dataObject);
-	fullData.amount++;
-	saveData(fullData);
-	const amount = document.getElementById('amount');
-	amount.innerText = fullData.amount;
 	// creating elements phase
 	const taskDiv = document.createElement('div'); taskDiv.id = objectID;
-	const taskSpan = document.createElement('span'); taskSpan.innerText = data; taskSpan.classList.add('task');
+	const taskSpan = document.createElement('span'); taskSpan.innerText = initDataObject ? initDataObject.value : data; taskSpan.classList.add('task');
 	const checkbox = document.createElement('input'); checkbox.type = 'checkbox';
 	checkbox.addEventListener("click", () => {
 		taskSpan.classList.toggle('done');
 		taskSpan.classList.contains('done') ? doneState(true, objectID) : doneState(false, objectID);
 	});
+	taskSpan.addEventListener("click", () => {
+		if(!globalObject.strictMode){
+			if(taskDiv.classList.contains("selected")){
+				taskDiv.classList.remove("selected");
+				globalObject.listSelected = globalObject.listSelected.filter(element => element !== taskDiv);
+				countSelected();
+			}else{
+				taskDiv.classList.add("selected");
+				globalObject.listSelected.push(taskDiv);
+				countSelected();
+			}
+		}
+	});
+	if(initDataObject){
+		if(initDataObject.isDone === true){
+			taskSpan.classList.add("done");
+			checkbox.checked = true;
+		}
+	}
 	// injection of elements phase
 	const main = document.querySelector('main');
 	taskDiv.appendChild(checkbox); taskDiv.appendChild(taskSpan);
 	main.prepend(taskDiv);
 }
 
+function countSelected(){
+	const allowNumber = globalObject.listSelected.length;
+	if(allowNumber > 0){
+		if(allowNumber > 1){
+			editBut.classList.remove("active");
+		}else if(allowNumber == 1){
+			delBut.classList.add("active");
+			editBut.classList.add("active");
+		}
+	}else{
+		delBut.classList.remove("active");
+		editBut.classList.remove("active");
+	}
+}
+
+function strictMode(isOn){
+	const taskDiv = globalObject.listSelected[0];
+	if(isOn){
+		globalObject.strictMode = true;
+		taskDiv.classList.add('strict');
+		addBut.classList.remove("active");
+		delBut.classList.remove("active");
+		editBut.classList.remove("active");
+		saveBut.classList.add("active");
+	}else{
+		globalObject.strictMode = false;
+		taskDiv.classList.remove('strict');
+		taskDiv.classList.remove('selected');
+		saveBut.classList.remove("active");
+		addBut.classList.add("active");
+	}
+}
+
 
 
 // DATA MANAGMENT
 
+// getting data function
 function callData(){
 	return JSON.parse(localStorage.getItem("to-do")) ?? {
 		new : true,
@@ -79,35 +161,12 @@ function callData(){
 		list : []
 	};
 }
-// initial data managment function
-function initialLoad(){
-	const fullData = callData();
-	if(fullData.new){
-		dataObject = {
-			id : "example",
-			value : "example",
-			isDone : false,
-			order : Number
-		}
-		fullData.list.push(dataObject);
-		fullData.amount++;
-		fullData.new = false;
-		saveData(fullData);
-		const amount = document.getElementById('amount');
-		amount.innerText = fullData.amount;
-		console.log("Data not exist - example was created!");
-	}else{
-		// initial loading of list if we have existing data in LStorage
-		
-		const amount = document.getElementById('amount');
-		amount.innerText = fullData.amount;
-		console.log("Data exist!");
-	}
-}
-// data save
+
+// data save function
 function saveData(fullData){
 	localStorage.setItem("to-do", JSON.stringify(fullData))
 }
+
 // id function
 function generateID(length = 8){
 	const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -118,6 +177,7 @@ function generateID(length = 8){
 	}
 	return result;
 }
+
 // done state func
 function doneState(isDone, id){
 	const fullData = callData();
@@ -135,6 +195,40 @@ function doneState(isDone, id){
 	console.log(actualE);
 	console.log(localStorage.getItem("to-do"));
 };
+
+// initial data managment function
+function initialLoad(){
+	const fullData = callData();
+	if(fullData.new){
+		dataObject = {
+			id : "example",
+			value : "example",
+			isDone : false,
+			order : Number
+		}
+		fullData.list.push(dataObject);
+		fullData.amount++;
+		fullData.new = false;
+		saveData(fullData);
+		// initial creating of example and amount
+		for(const dataObject of fullData.list){
+			addElem(undefined, dataObject);
+		}
+		const amount = document.getElementById('amount');
+		amount.innerText = fullData.amount;
+		// initial report
+		console.log("Data not exist - example was created!");
+	}else{
+		// initial creating of list (and others), if we have existing data in LStorage
+		for(const dataObject of fullData.list){
+			addElem(undefined, dataObject);
+		}
+		const amount = document.getElementById('amount');
+		amount.innerText = fullData.amount;
+		// initial report
+		console.log("Data exist!");
+	}
+}
 
 // INITIAL DATA LOADING AND CREATING TASKS
 initialLoad();
