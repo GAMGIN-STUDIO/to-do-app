@@ -20,12 +20,41 @@ addBut.addEventListener("click", () => {
 		return
 	}else{
 		addElem(contentBox.value, undefined);
+		contentBox.value = "";
 	}
 });
 
 // button for deleting existing to-dos
 const delBut = document.getElementById("del-but");
 delBut.addEventListener("click", () => {
+	// just delete all selected from UI and data as well - for the first data part
+	const fullData = callData();
+	fullData.list = fullData.list.filter((dataObject) => {
+		let flag = true;
+		for(const taskDiv of globalObject.listSelected){
+			if(taskDiv.id === dataObject.id){
+				flag = false;
+				break;
+			}
+		}
+		if(flag === false){
+			fullData.amount--;
+			return false;
+		}else{
+			return true;
+		}
+	});
+	console.log(fullData.list);
+	console.log(globalObject.listSelected);
+	saveData(fullData);
+	// for the second remove all selected from DOM
+	for(const taskDiv of globalObject.listSelected){
+		taskDiv.remove();
+	}
+	const amount = document.getElementById('amount');
+	amount.innerText = fullData.amount; // don't forget about amount DOM managment
+	globalObject.listSelected = []; // don't forget clean the array after removing all selected from DOM
+	countSelected(); // and also delBut, editBut allowing managment
 
 });
 
@@ -144,6 +173,7 @@ function strictMode(isOn){
 		globalObject.strictMode = false;
 		taskDiv.classList.remove('strict');
 		taskDiv.classList.remove('selected');
+		globalObject.listSelected = []; // don't forget clean the array after removing selected from the one item
 		saveBut.classList.remove("active");
 		addBut.classList.add("active");
 	}
@@ -217,7 +247,7 @@ function initialLoad(){
 		const amount = document.getElementById('amount');
 		amount.innerText = fullData.amount;
 		// initial report
-		console.log("Data not exist - example was created!");
+		console.log("LStorage doesn't exist - Lstorage and example was created!");
 	}else{
 		// initial creating of list (and others), if we have existing data in LStorage
 		for(const dataObject of fullData.list){
@@ -226,7 +256,7 @@ function initialLoad(){
 		const amount = document.getElementById('amount');
 		amount.innerText = fullData.amount;
 		// initial report
-		console.log("Data exist!");
+		console.log("Local Storage exists!");
 	}
 }
 
