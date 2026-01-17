@@ -44,8 +44,6 @@ delBut.addEventListener("click", () => {
 			return true;
 		}
 	});
-	console.log(fullData.list);
-	console.log(globalObject.listSelected);
 	saveData(fullData);
 	// for the second remove all selected from DOM
 	for(const taskDiv of globalObject.listSelected){
@@ -222,8 +220,6 @@ function doneState(isDone, id){
 	}
 	saveData(fullData);
 	const actualE = document.getElementById(`${id}`);
-	console.log(actualE);
-	console.log(localStorage.getItem("to-do"));
 };
 
 // initial data managment function
@@ -263,7 +259,30 @@ function initialLoad(){
 // INITIAL DATA LOADING AND CREATING TASKS
 initialLoad();
  
-
+$("#sortable").sortable({
+	stop : function (event, ui) {
+		const userSortedArray = [];
+		const main = document.querySelector("main");
+		// fill array with ids by user sorting preferencies
+		for (const taskDiv of main.children) {
+			if (taskDiv.id) {
+				userSortedArray.push(taskDiv.id);
+			}
+		}
+		const fullData = callData();
+		// iterate user array
+		for(const [key, id] of Object.entries(userSortedArray)){
+			for(const dataObject of fullData.list){
+				if(id === dataObject.id){
+					dataObject.order = key;
+				}
+			}
+		}
+		// sort the data list depend on how we will be creating list after refresh
+		fullData.list.sort((a,b) => b.order - a.order);
+		saveData(fullData);
+   }
+});
 
 
 console.log(localStorage.getItem("to-do"));
