@@ -1,8 +1,12 @@
-// GLOBAL
+// GLOBALS
 const globalObject = {
 	strictMode : false,
 	listSelected : []
-}
+};
+
+const allSelected = {
+	all : false
+};
 
 // BUTTONS
 
@@ -145,10 +149,15 @@ function addElem(data, initDataObject){
 
 function countSelected(){
 	const allowNumber = globalObject.listSelected.length;
-	if(allowNumber > 0){
+	const fullData = callData();
+	const amount = fullData.amount;
+	if(amount == allowNumber && amount > 1){
+		editBut.classList.remove("active");
+		delBut.classList.add("active");
+	}else if(allowNumber > 0){
 		if(allowNumber > 1){
 			editBut.classList.remove("active");
-		}else if(allowNumber == 1){
+		}else if(allowNumber == 1 && amount > 0){
 			delBut.classList.add("active");
 			editBut.classList.add("active");
 		}
@@ -256,8 +265,15 @@ function initialLoad(){
 	}
 }
 
+
+
 // INITIAL DATA LOADING AND CREATING TASKS
+
 initialLoad();
+
+
+
+// OTHER FUNCTIONTALITIES
  
 $("#sortable").sortable({
 	stop : function (event, ui) {
@@ -284,5 +300,28 @@ $("#sortable").sortable({
    }
 });
 
+const amountSelect = document.querySelector("#amount");
+const selectText = document.querySelector(".select-text");
+amountSelect.addEventListener("click", () => {
+	const fullData = callData();
+	for(const dataObject of fullData.list){
+		const taskDiv = document.getElementById(`${dataObject.id}`);
+		if(allSelected.all === true){
+			taskDiv.classList.remove("selected");
+		}else{
+			taskDiv.classList.add("selected");
+			globalObject.listSelected.push(taskDiv);
+		}
+	}
+	if(allSelected.all === true){
+		globalObject.listSelected = [];
+		allSelected.all = false;
+		selectText.innerHTML = "Select<br>All"
+	}else{
+		allSelected.all = true;
+		selectText.innerHTML = "Unselect<br>All"
+	}
+	countSelected();
+});
 
 console.log(localStorage.getItem("to-do"));

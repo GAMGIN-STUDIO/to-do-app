@@ -13,18 +13,87 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+
+	font-style: italic;
+	font-weight: bold;
+	font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 header {
 	width: var(--basic-width);
+	position: relative;
 	display: flex;
-	background-color: gray;
+	justify-content: center;
+
+	& #amount {
+		width: 50px;
+		height: 50px;
+
+		position: absolute;
+		left: 25px;
+		top: 60px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		font-size: large;
+		font-weight: bold;
+
+		border: 3px solid rebeccapurple;
+		border-radius: 25px;
+
+		font-family: 'Times';
+
+		cursor: pointer;
+	}
+
+	& .select-text {
+		position: absolute;
+		left: 90px;
+		top: 75px;
+	}
+
 }
 
 nav {
 	width: var(--basic-width);
 	display: flex;
-	background-color: mediumseagreen;
+	justify-content: flex-end;
+	font-size: 12px;
+
+	& > div{
+		display: flex;
+		align-items: center;
+
+		& .dark {
+			background-color: black;
+			padding: 10px;
+			color: rebeccapurple;
+		}
+
+		& .between {
+			width: 40px;
+			background-color: grey;
+			text-align: center;
+
+			& .left {
+				background-color: black;
+				color: white;
+			}
+
+			& .right {
+				background-color: white;
+				color: black;
+			}
+		}
+
+		& .light {
+			background-color: white;
+			padding: 10px;
+			color: blueviolet;
+		}
+
+	}
 }
 
 .main-div {
@@ -33,62 +102,111 @@ nav {
 	flex-direction: column;
 	align-items: center;
 
-		& > div {
+	margin-top: 20px;
+
+	& > div {
+		display: flex;
+		flex-direction: column;
+
+		& aside {
 			display: flex;
-			flex-direction: column;
+			width: clamp(var(--basic-min-width), 85vw, 400px);
+		}
 
-			& aside {
+		& aside.controls {
+			justify-content: center;
+			margin-bottom: 7px;
+
+			& #add-but, & #edit-but, & #del-but, & #save-but {
 				display: flex;
-				width: clamp(var(--basic-min-width), 85vw, 400px);
+				justify-content: center;
+				align-items: center;
+				height: 20px;
+				margin: 3px;
+				margin-right: 10px;
+
+				pointer-events: none;
+				color: grey;
+				opacity: 50%;
+
+				filter: drop-shadow(1px 1px 1px black);
 			}
 
-			& aside.controls {
-				background-color: darkkhaki;
+			& #add-but.active, & #edit-but.active, & #del-but.active, & #save-but.active {
+				color: rebeccapurple;
+				pointer-events: auto;
+				opacity: 100%;
+				cursor: pointer;
 
-				& #add-but, & #edit-but, & #del-but, & #save-but {
-					pointer-events: none;
-					color: grey;
-				}
+				filter: drop-shadow(1px 1px 1px rebeccapurple);
+			}
+		}
 
-				& #add-but.active, & #edit-but.active, & #del-but.active, & #save-but.active {
-					color: black;
-					pointer-events: auto;
-				}
+		& aside.content {
+
+			& #input-content {
+				flex-grow: 1;
+				color: black;
+				font-style: italic;
+				font-family: Georgia, 'Times New Roman', Times, serif;
+
+				border: none;
+				outline: none;
+				resize: none;
 			}
 
-			& aside.content {
-				background-color: cadetblue;
-
-				& #input-content {
-					flex-grow: 1;
-					color: black;
-					font-style: italic;
-					font-family: Georgia, 'Times New Roman', Times, serif;
-				}
-
-				& #input-content::placeholder {
-					color: grey;
-					opacity: 0.5;
-					font-style: italic;
-					font-weight: 600;
-					font-family: Georgia, 'Times New Roman', Times, serif;
-					transition: all 0.1s linear;
-				}
-
-				& #input-content.empty::placeholder {
-					color: red;
-					font-size: 1.1em;
-				}
+			& #input-content::placeholder {
+				color: grey;
+				opacity: 0.5;
+				font-style: italic;
+				font-weight: 600;
+				font-family: Georgia, 'Times New Roman', Times, serif;
+				transition: all 0.1s linear;
 			}
+
+			& #input-content.empty::placeholder {
+				color: blueviolet;
+				font-size: 1.1em;
+			}
+
+			& #input-content:placeholder-shown {
+				border: none;
+				outline: none;
+				resize: none;
+			}
+
+			& #input-content:focus {
+				border: none;
+				outline: none;
+				resize: none;
+			}
+		}
 	}
 
 	& main {
 		width: clamp(var(--basic-min-width), 85vw, 400px);
 		min-height: 30px;
 
-		background-color: rebeccapurple;
+		margin-top: 5px;
+
+		border: 2px solid black;
+		border-radius: 4px;
+		padding-top: 5px;
+		padding-bottom: 5px;
 
 		& > div {
+			display: flex;
+			align-items: center;
+			padding: 3px;
+
+			& input[type="checkbox"]:checked {
+				accent-color: purple;
+			}
+
+			& .task {
+				margin-left: 5px;
+				cursor: pointer;
+			}
 
 			& .task.done {
 				text-decoration: line-through;
@@ -96,7 +214,7 @@ nav {
 		}
 
 		& > div.selected {
-			background-color: beige;
+			background-color: blueviolet;
 		}
 
 		& > div.selected.strict {
@@ -108,7 +226,13 @@ nav {
 footer {
 	width: var(--basic-width);
 	display: flex;
-	background-color: orange;
+	background-color: rebeccapurple;
+	margin-top: 20px;
+
+	& > div {
+		margin: 15px;
+		margin-left: 25px;
+	}
 }
 
 /* app is mobile first, so the default styles are for small screens */
@@ -124,6 +248,16 @@ footer {
 
 			& aside.controls {
 				width: var(--controls-width);
+				margin-bottom: 0px;
+
+				& #add-but, & #edit-but, & #del-but, & #save-but {
+					border: 2px solid gray;
+					border-radius: 10px;
+				}
+
+				& #add-but.active, & #edit-but.active, & #del-but.active, & #save-but.active {
+					border-color:  rebeccapurple;
+				}
 			}
 
 			& aside.content {

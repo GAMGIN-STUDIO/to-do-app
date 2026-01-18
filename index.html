@@ -5,24 +5,34 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.min.js" integrity="sha256-AlTido85uXPlSyyaZNsjJXeCs07eSv3r43kyCVc8ChI=" crossorigin="anonymous"></script>
 	<title>TO-DO</title>
 </head>
 <body>
 	<header>
-		<h1>TO-DO <span id="amount"></span></h1>
+		<h1>TO-DOs</h1>
+		<div id="amount"></div>
+		<div class="amount-glass"></div>
+		<span class="select-text">Select<br>All</span>
 	</header>
 
-	<nav><span>DARK</span><span>/LIGHT</span></nav>
+	<nav>
+		<div>
+			<div class="dark">DARK</div>
+			<div class="between"><span class="left">&lt;</span><span class="right">&gt;</span></div>
+			<div class="light">LIGHT</div>
+		</div>
+	</nav>
 
 	<div class="main-div">
 			<div>
 				<aside class="controls">
-						<div id="add-but" class="active">+ button</div>
-						<div id="del-but">- button</div>
-						<div id="edit-but">edit</div>
-						<div id="save-but">save</div>
+						<div id="add-but" class="active"><i class="fa-solid fa-plus"></i></div>
+						<div id="del-but"><i class="fa-solid fa-minus"></i></div>
+						<div id="edit-but"><i class="fa-solid fa-pen-to-square"></i></div>
+						<div id="save-but"><i class="fa-solid fa-floppy-disk"></i></div>
 				</aside>
 
 				<aside class="content">
@@ -35,7 +45,11 @@
 			</main>
 	</div>
 
-	<footer>footer - Lorem ipsum dolor sit amet.</footer> 
+	<footer>
+		<div>
+			footer - Lorem ipsum dolor sit amet.
+		</div>
+	</footer> 
 
 	<script src="./main.js"></script>
 </body>
