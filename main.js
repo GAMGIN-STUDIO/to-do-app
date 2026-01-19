@@ -168,6 +168,7 @@ function countSelected(){
 }
 
 function strictMode(isOn){
+	const amountSelect = document.getElementById("amount");
 	const taskDiv = globalObject.listSelected[0];
 	if(isOn){
 		globalObject.strictMode = true;
@@ -176,6 +177,7 @@ function strictMode(isOn){
 		delBut.classList.remove("active");
 		editBut.classList.remove("active");
 		saveBut.classList.add("active");
+		amountSelect.classList.add("inactive");
 	}else{
 		globalObject.strictMode = false;
 		taskDiv.classList.remove('strict');
@@ -183,6 +185,7 @@ function strictMode(isOn){
 		globalObject.listSelected = []; // don't forget clean the array after removing selected from the one item
 		saveBut.classList.remove("active");
 		addBut.classList.add("active");
+		amountSelect.classList.remove("inactive");
 	}
 }
 
@@ -322,6 +325,25 @@ amountSelect.addEventListener("click", () => {
 		selectText.innerHTML = "Unselect<br>All"
 	}
 	countSelected();
+});
+
+const refresh = document.getElementById("refresh");
+refresh.addEventListener("click", () => {
+	location.reload();
+});
+
+const themeBut = document.getElementById("theme");
+const body = document.querySelector("body");
+const asideControls = document.querySelector("aside.controls")
+const asideContentt = document.querySelector("aside.content");
+const main = document.querySelector("main");
+themeBut.addEventListener("click", () => {
+	themeBut.classList.toggle("light");
+	body.classList.toggle("dark");
+	amountSelect.classList.toggle("dark");
+	asideControls.classList.toggle("dark");
+	asideContentt.classList.toggle("dark");
+	main.classList.toggle("dark");
 });
 
 console.log(localStorage.getItem("to-do"));

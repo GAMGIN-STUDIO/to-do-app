@@ -17,265 +17,441 @@ body {
 	font-style: italic;
 	font-weight: bold;
 	font-family: Georgia, 'Times New Roman', Times, serif;
-}
 
-header {
-	width: var(--basic-width);
-	position: relative;
-	display: flex;
-	justify-content: center;
-
-	& #amount {
-		width: 50px;
-		height: 50px;
-
-		position: absolute;
-		left: 25px;
-		top: 60px;
+	& header {
+		width: var(--basic-width);
+		position: relative;
 		display: flex;
-		align-items: center;
 		justify-content: center;
 
-		font-size: large;
-		font-weight: bold;
-
-		border: 3px solid rebeccapurple;
-		border-radius: 25px;
-
-		font-family: 'Times';
-
-		cursor: pointer;
-	}
-
-	& .select-text {
-		position: absolute;
-		left: 90px;
-		top: 75px;
-	}
-
-}
-
-nav {
-	width: var(--basic-width);
-	display: flex;
-	justify-content: flex-end;
-	font-size: 12px;
-
-	& > div{
-		display: flex;
-		align-items: center;
-
-		& .dark {
-			background-color: black;
-			padding: 10px;
-			color: rebeccapurple;
+		& h1 a {
+			cursor: pointer;
 		}
 
-		& .between {
-			width: 40px;
-			background-color: grey;
-			text-align: center;
+		& #amount {
+			width: 50px;
+			height: 50px;
 
-			& .left {
-				background-color: black;
-				color: white;
-			}
-
-			& .right {
-				background-color: white;
-				color: black;
-			}
-		}
-
-		& .light {
-			background-color: white;
-			padding: 10px;
-			color: blueviolet;
-		}
-
-	}
-}
-
-.main-div {
-	width: var(--basic-width);
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-
-	margin-top: 20px;
-
-	& > div {
-		display: flex;
-		flex-direction: column;
-
-		& aside {
-			display: flex;
-			width: clamp(var(--basic-min-width), 85vw, 400px);
-		}
-
-		& aside.controls {
-			justify-content: center;
-			margin-bottom: 7px;
-
-			& #add-but, & #edit-but, & #del-but, & #save-but {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				height: 20px;
-				margin: 3px;
-				margin-right: 10px;
-
-				pointer-events: none;
-				color: grey;
-				opacity: 50%;
-
-				filter: drop-shadow(1px 1px 1px black);
-			}
-
-			& #add-but.active, & #edit-but.active, & #del-but.active, & #save-but.active {
-				color: rebeccapurple;
-				pointer-events: auto;
-				opacity: 100%;
-				cursor: pointer;
-
-				filter: drop-shadow(1px 1px 1px rebeccapurple);
-			}
-		}
-
-		& aside.content {
-
-			& #input-content {
-				flex-grow: 1;
-				color: black;
-				font-style: italic;
-				font-family: Georgia, 'Times New Roman', Times, serif;
-
-				border: none;
-				outline: none;
-				resize: none;
-			}
-
-			& #input-content::placeholder {
-				color: grey;
-				opacity: 0.5;
-				font-style: italic;
-				font-weight: 600;
-				font-family: Georgia, 'Times New Roman', Times, serif;
-				transition: all 0.1s linear;
-			}
-
-			& #input-content.empty::placeholder {
-				color: blueviolet;
-				font-size: 1.1em;
-			}
-
-			& #input-content:placeholder-shown {
-				border: none;
-				outline: none;
-				resize: none;
-			}
-
-			& #input-content:focus {
-				border: none;
-				outline: none;
-				resize: none;
-			}
-		}
-	}
-
-	& main {
-		width: clamp(var(--basic-min-width), 85vw, 400px);
-		min-height: 30px;
-
-		margin-top: 5px;
-
-		border: 2px solid black;
-		border-radius: 4px;
-		padding-top: 5px;
-		padding-bottom: 5px;
-
-		& > div {
+			position: absolute;
+			left: 25px;
+			top: 70px;
 			display: flex;
 			align-items: center;
-			padding: 3px;
+			justify-content: center;
 
-			& input[type="checkbox"]:checked {
-				accent-color: purple;
-			}
+			font-size: large;
+			font-weight: bold;
 
-			& .task {
-				margin-left: 5px;
-				cursor: pointer;
-			}
+			border: 3px solid rebeccapurple;
+			border-radius: 25px;
 
-			& .task.done {
-				text-decoration: line-through;
-			}
+			font-family: 'Times';
+
+			cursor: pointer;
+
+			filter: drop-shadow(1px 1px 1px rebeccapurple);
 		}
 
-		& > div.selected {
-			background-color: blueviolet;
+		& #amount.inactive {
+			pointer-events: none;
+			border-color: gray;
+			opacity: 50%;
+			filter: drop-shadow(1px 1px 1px black);
 		}
 
-		& > div.selected.strict {
-			background-color: lightgreen;
+		& #amount.dark {
+			color: white;
+			border: 3px solid purple;
+			filter: drop-shadow(2px 2px 2px black);
+		}
+
+		& #amount.dark.inactive {
+			filter: drop-shadow(1px 1px 1px black);
+		}
+
+		& #amount:hover {
+			background-color: rebeccapurple;
+			color: white;
+			filter: drop-shadow(2px 2px 2px black);
+		}
+
+		& #amount.dark:hover {
+			color: black;
+			background-color: purple;
+			filter: drop-shadow(3px 3px 3px black);
+		}
+
+		& .select-text {
+			position: absolute;
+			left: 90px;
+			top: 85px;
+		}
+
+	}
+
+	& nav {
+		width: var(--basic-width);
+		display: flex;
+		justify-content: flex-end;
+
+		margin-top: 60px;
+		margin-right: 10px;
+
+		font-size: 10px;
+
+		& #theme {
+			display: flex;
+			align-items: center;
+
+			cursor: pointer;
+
+			& .icon {
+				background-color: transparent;
+				text-align: center;
+
+				margin-right: 5px;
+
+				& .moon {
+					color: rgb(98, 98, 98);
+				}
+
+				& .sun {
+					display: none;
+					color: rgb(255, 210, 105);
+				}
+			}
+
+			& .dark {
+				background-color: black;
+				padding: 10px;
+				color: rebeccapurple;
+				border-radius: 5px;
+			}
+
+			& .light {
+				display: none;
+				background-color: rgb(250, 245, 255);
+				padding: 10px;
+				color: blueviolet;
+				border-radius: 5px;
+			}
+
+		}
+
+		& #theme.light{
+
+			& .icon {
+
+				& .moon {
+					display: none;
+				}
+
+				& .sun {
+					display: block;
+				}
+			}
+
+			& .dark {
+				display: none;
+			}
+
+			& .light {
+				display: block;
+			}
+
 		}
 	}
-}
 
-footer {
-	width: var(--basic-width);
-	display: flex;
-	background-color: rebeccapurple;
-	margin-top: 20px;
+	& .main-div {
+		width: var(--basic-width);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 
-	& > div {
-		margin: 15px;
-		margin-left: 25px;
-	}
-}
-
-/* app is mobile first, so the default styles are for small screens */
-@media (min-width: 520px){
-	.main-div {
+		margin-top: 20px;
 
 		& > div {
-			flex-direction: row;
+			display: flex;
+			flex-direction: column;
 
 			& aside {
-				flex-direction: column;
+				display: flex;
+				width: clamp(var(--basic-min-width), 85vw, 400px);
 			}
 
 			& aside.controls {
-				width: var(--controls-width);
-				margin-bottom: 0px;
+				justify-content: center;
+				margin-bottom: 7px;
 
 				& #add-but, & #edit-but, & #del-but, & #save-but {
-					border: 2px solid gray;
-					border-radius: 10px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					height: 20px;
+					margin: 3px;
+					margin-right: 10px;
+
+					pointer-events: none;
+					color: grey;
+					opacity: 50%;
+
+					border-radius: 5px;
+
+					filter: drop-shadow(1px 1px 1px black);
 				}
 
 				& #add-but.active, & #edit-but.active, & #del-but.active, & #save-but.active {
-					border-color:  rebeccapurple;
+					color: rebeccapurple;
+					pointer-events: auto;
+					opacity: 100%;
+					cursor: pointer;
+
+					filter: drop-shadow(1px 1px 1px rebeccapurple);
+				}
+
+				& #add-but.active:hover, & #edit-but.active:hover, & #del-but.active:hover, & #save-but.active:hover {
+					background-color: rebeccapurple;
+					color: white;
+					filter: drop-shadow(2px 2px 2px black);
+				}
+			}
+
+			& aside.controls.dark {
+
+				& #add-but, & #edit-but, & #del-but, & #save-but {
+
+					color: grey;
+					opacity: 50%;
+					filter: drop-shadow(1px 1px 1px black);
+				}
+
+				& #add-but.active, & #edit-but.active, & #del-but.active, & #save-but.active {
+					color: purple;
+					opacity: 100%;
+					filter: drop-shadow(1px 1px 1px black);
+				}
+
+				& #add-but.active:hover, & #edit-but.active:hover, & #del-but.active:hover, & #save-but.active:hover {
+					background-color: purple;
+					color: black;
+					filter: drop-shadow(2px 2px 2px black);
 				}
 			}
 
 			& aside.content {
-				width: clamp(
-					var(--basic-min-width),
-					calc(var(--ideal-width) - var(--controls-width)),
-					calc(var(--max-width) - var(--controls-width))
-				);
+
+				& #input-content {
+					flex-grow: 1;
+					color: black;
+					font-style: italic;
+					font-family: Georgia, 'Times New Roman', Times, serif;
+
+					border: none;
+					outline: none;
+					resize: none;
+				}
+
+				& #input-content::placeholder {
+					color: grey;
+					opacity: 0.5;
+					font-style: italic;
+					font-weight: 600;
+					font-family: Georgia, 'Times New Roman', Times, serif;
+					transition: all 0.1s linear;
+				}
+
+				& #input-content.empty::placeholder {
+					color: blueviolet;
+					font-size: 1.1em;
+				}
+
+				& #input-content:placeholder-shown {
+					border: none;
+					outline: none;
+					resize: none;
+				}
+
+				& #input-content:focus {
+					border: none;
+					outline: none;
+					resize: none;
+				}
 			}
 
+			& aside.content.dark {
+
+				& #input-content {
+					background-color: rgb(59, 20, 96);
+					color: bisque;
+				}
+
+				& #input-content::placeholder {
+					color: grey;
+				}
+
+				& #input-content.empty::placeholder {
+					color: purple;
+				}
+
+				& #input-content:placeholder-shown {
+					background-color: rgb(59, 20, 96);
+				}
+
+				& #input-content:focus {
+					background-color: rgb(59, 20, 96);
+				}
+			}
 		}
 
 		& main {
-			width: clamp(
-				var(--basic-min-width),
-				var(--ideal-width),
-				var(--max-width)
-			);
+			width: clamp(var(--basic-min-width), 85vw, 400px);
+			min-height: 30px;
+
+			margin-top: 5px;
+
+			border: 2px solid black;
+			border-radius: 4px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+
+			& > div {
+				display: flex;
+				align-items: center;
+				padding: 3px;
+				margin-top: 1px;
+
+				& input[type="checkbox"]:checked {
+					accent-color: purple;
+				}
+
+				& .task {
+					margin-left: 5px;
+					cursor: pointer;
+				}
+
+				& .task.done {
+					text-decoration: line-through;
+					text-decoration-color: black;
+				}
+			}
+
+			& > div.selected {
+				background-color: blueviolet;
+			}
+
+			& > div.selected.strict {
+				background-color: lightgreen;
+			}
+		}
+
+		& main.dark {
+
+			& > div {
+
+				& input[type="checkbox"]:checked {
+					accent-color: purple;
+				}
+
+				& .task.done {
+					text-decoration-color: purple;
+				}
+			}
+
+			& > div.selected {
+				background-color: rebeccapurple;
+			}
+
+			& > div.selected.strict {
+				background-color: darkolivegreen;
+			}
+		}
+	}
+
+	& footer {
+		width: var(--basic-width);
+		display: flex;
+		background-color: rebeccapurple;
+		margin-top: 20px;
+
+		& > div {
+			margin: 15px;
+			margin-left: 25px;
+		}
+	}
+}
+
+body.dark {
+	background-color: rgb(59, 20, 96);
+}
+
+
+/* app is mobile first, so the default styles are for small screens */
+@media (min-width: 520px){
+
+	body {
+
+		& header {
+			#amount {
+				top: 60px;
+			}
+
+			.select-text {
+				top: 75px;
+			}
+		}
+
+		& nav {
+			margin-top: 0px;
+		}
+
+		& .main-div {
+			margin-top: 40px;
+
+			& > div {
+				flex-direction: row;
+
+				& aside {
+					flex-direction: column;
+				}
+
+				& aside.controls {
+					width: var(--controls-width);
+					margin-bottom: 0px;
+
+					& #add-but, & #edit-but, & #del-but, & #save-but {
+						border: 2px solid gray;
+						border-radius: 10px;
+					}
+
+					& #add-but.active, & #edit-but.active, & #del-but.active, & #save-but.active {
+						border-color:  rebeccapurple;
+					}
+				}
+
+				& aside.controls.dark {
+
+					& #add-but, & #edit-but, & #del-but, & #save-but {
+						border-color: purple;
+					}
+				}
+
+				& aside.content {
+					width: clamp(
+						var(--basic-min-width),
+						calc(var(--ideal-width) - var(--controls-width)),
+						calc(var(--max-width) - var(--controls-width))
+					);
+				}
+
+			}
+
+			& main {
+				width: clamp(
+					var(--basic-min-width),
+					var(--ideal-width),
+					var(--max-width)
+				);
+			}
 		}
 	}
 }
