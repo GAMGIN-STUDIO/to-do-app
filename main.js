@@ -341,22 +341,6 @@ refresh.addEventListener("click", () => {
 	location.reload();
 });
 
-const themeBut = document.getElementById("theme");
-const body = document.querySelector("body");
-const asideControls = document.querySelector("aside.controls")
-const asideContentt = document.querySelector("aside.content");
-const main = document.querySelector("main");
-const download = document.getElementById("download");
-themeBut.addEventListener("click", () => {
-	themeBut.classList.toggle("light");
-	body.classList.toggle("dark");
-	amountSelect.classList.toggle("dark");
-	asideControls.classList.toggle("dark");
-	asideContentt.classList.toggle("dark");
-	main.classList.toggle("dark");
-	download.classList.toggle("dark");
-});
-
 download.addEventListener("click", () => {
   html2canvas(document.querySelector("main")).then(canvas => {
     const link = document.createElement("a");
@@ -366,4 +350,71 @@ download.addEventListener("click", () => {
   });
 });
 
+const themeBut = document.getElementById("theme");
+themeBut.addEventListener("click", () => {
+	setTheme(true);
+});
+
+function setTheme(isToggle){
+	const body = document.querySelector("body");
+	const asideControls = document.querySelector("aside.controls")
+	const asideContentt = document.querySelector("aside.content");
+	const main = document.querySelector("main");
+	const download = document.getElementById("download");
+	const theme = getThemeCookie("to-do-theme");
+	if(isToggle){
+			if(body.classList.contains("dark")){
+				setThemeCookie("to-do-theme=light");
+			}else{
+				setThemeCookie("to-do-theme=dark");
+			}
+			themeBut.classList.toggle("light");
+			body.classList.toggle("dark");
+			amountSelect.classList.toggle("dark");
+			asideControls.classList.toggle("dark");
+			asideContentt.classList.toggle("dark");
+			main.classList.toggle("dark");
+			download.classList.toggle("dark");
+	}else{
+		if(theme === "dark"){
+			themeBut.classList.add("light");
+			body.classList.add("dark");
+			amountSelect.classList.add("dark");
+			asideControls.classList.add("dark");
+			asideContentt.classList.add("dark");
+			main.classList.add("dark");
+			download.classList.add("dark");
+			setThemeCookie("to-do-theme=dark");
+		}else if(theme === "light" || theme === null){
+			themeBut.classList.remove("light");
+			body.classList.remove("dark");
+			amountSelect.classList.remove("dark");
+			asideControls.classList.remove("dark");
+			asideContentt.classList.remove("dark");
+			main.classList.remove("dark");
+			download.classList.remove("dark");
+			setThemeCookie("to-do-theme=light");
+		}
+	}
+};
+
+function getThemeCookie(name){
+	const cookies = document.cookie.split("; ");
+	const rawTheme = cookies.find(cookie => cookie.startsWith(name + "="));
+	return rawTheme ? rawTheme.split("=")[1] : null;
+};
+
+function setThemeCookie(nameValue){
+	document.cookie = nameValue + "; path=/; max-age=604800"; // expires in 7 days
+};
+
+
+
+// INITIAL THEME LOAD
+
+setTheme(false);
+
+
+
 console.log(localStorage.getItem("to-do"));
+console.log("Theme " + getThemeCookie("to-do-theme"));
