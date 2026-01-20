@@ -370,12 +370,47 @@ body {
 	& footer {
 		width: var(--basic-width);
 		display: flex;
-		background-color: rebeccapurple;
+		justify-content: center;
 		margin-top: 20px;
 
+		background-color: rebeccapurple;
+
+
 		& > div {
-			margin: 15px;
-			margin-left: 25px;
+			display: flex;
+
+			& #download {
+				text-align: center;
+				margin: 12px;
+				padding: 8px;
+				border: 3px solid rebeccapurple;
+				border-radius: 25px;
+				font-size: small;
+
+				cursor: pointer;
+
+				filter: drop-shadow(1px 1px 1px black);
+			}
+
+			& #download.dark {
+				color: white;
+				border-color: purple;
+				filter: drop-shadow(2px 2px 2px black);
+			}
+
+			& #download:hover {
+				border-color: blueviolet;
+				background-color: blueviolet;
+				color: white;
+				filter: drop-shadow(2px 2px 2px black);
+			}
+
+			& #download.dark:hover {
+				border-color: purple;
+				color: black;
+				background-color: purple;
+				filter: drop-shadow(3px 3px 3px black);
+			}
 		}
 	}
 }

@@ -209,13 +209,22 @@ function saveData(fullData){
 
 // id function
 function generateID(length = 8){
-	const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-		
+	const time = new Date().toLocaleTimeString('cs-CZ', {
+		hour: '2-digit',
+		minute: '2-digit',
+		second: '2-digit'
+	}).replace(/\:/g, "s");
+	const date = new Date().toLocaleDateString('cs-CZ', {
+		day: '2-digit',
+		month: '2-digit',
+		year: 'numeric'
+	}).replace(/\s/g, "").replace(/\./g, "s");
+	const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';	
 	let result = '';
 	for (let i = 0; i < length; i++) {
 		result += chars.charAt(Math.floor(Math.random() * chars.length));
 	}
-	return result;
+	return  date + "s" + time + "s" + result;
 }
 
 // done state func
@@ -337,6 +346,7 @@ const body = document.querySelector("body");
 const asideControls = document.querySelector("aside.controls")
 const asideContentt = document.querySelector("aside.content");
 const main = document.querySelector("main");
+const download = document.getElementById("download");
 themeBut.addEventListener("click", () => {
 	themeBut.classList.toggle("light");
 	body.classList.toggle("dark");
@@ -344,6 +354,16 @@ themeBut.addEventListener("click", () => {
 	asideControls.classList.toggle("dark");
 	asideContentt.classList.toggle("dark");
 	main.classList.toggle("dark");
+	download.classList.toggle("dark");
+});
+
+download.addEventListener("click", () => {
+  html2canvas(document.querySelector("main")).then(canvas => {
+    const link = document.createElement("a");
+    link.download = "to-dos.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
 });
 
 console.log(localStorage.getItem("to-do"));
