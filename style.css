@@ -49,24 +49,24 @@ body {
 
 			cursor: pointer;
 
-			filter: drop-shadow(1px 1px 1px rebeccapurple);
+			box-shadow: 1px 1px 1px 0 rebeccapurple;
 		}
 
 		& #amount.inactive {
 			pointer-events: none;
 			border-color: gray;
 			opacity: 50%;
-			filter: drop-shadow(1px 1px 1px black);
+			box-shadow: 1px 1px 1px 0 black;
 		}
 
 		& #amount.dark {
 			color: white;
 			border: 3px solid purple;
-			filter: drop-shadow(2px 2px 2px black);
+			box-shadow: 2px 2px 2px 0 black;
 		}
 
 		& #amount.dark.inactive {
-			filter: drop-shadow(1px 1px 1px black);
+			box-shadow: 1px 1px 1px 0 black;
 		}
 
 		& .select-text {
@@ -185,7 +185,7 @@ body {
 
 					border-radius: 5px;
 
-					filter: drop-shadow(1px 1px 1px black);
+					box-shadow: 1px 1px 1px 0 black;
 				}
 
 				& #add-but.active, & #edit-but.active, & #del-but.active, & #save-but.active {
@@ -194,7 +194,7 @@ body {
 					opacity: 100%;
 					cursor: pointer;
 
-					filter: drop-shadow(1px 1px 1px rebeccapurple);
+					box-shadow: 1px 1px 1px 0 rebeccapurple;
 				}
 			}
 
@@ -204,13 +204,13 @@ body {
 
 					color: grey;
 					opacity: 50%;
-					filter: drop-shadow(1px 1px 1px black);
+					box-shadow: 1px 1px 1px 0 black;
 				}
 
 				& #add-but.active, & #edit-but.active, & #del-but.active, & #save-but.active {
 					color: purple;
 					opacity: 100%;
-					filter: drop-shadow(1px 1px 1px black);
+					box-shadow: 1px 1px 1px 0 black;
 				}
 			}
 
@@ -365,13 +365,13 @@ body {
 
 				cursor: pointer;
 
-				filter: drop-shadow(1px 1px 1px black);
+				box-shadow: 1px 1px 1px 0 black;
 			}
 
 			& #download.dark {
 				color: white;
 				border-color: purple;
-				filter: drop-shadow(2px 2px 2px black);
+				box-shadow: 2px 2px 2px 0 black;
 			}
 		}
 	}
@@ -390,13 +390,13 @@ body.dark {
 			& #amount:hover {
 				background-color: rebeccapurple;
 				color: white;
-				filter: drop-shadow(2px 2px 2px black);
+				box-shadow: 2px 2px 2px 0 black;
 			}
 
 			& #amount.dark:hover {
 				color: black;
 				background-color: purple;
-				filter: drop-shadow(3px 3px 3px black);
+				box-shadow: 3px 3px 3px 0 black;
 			}
 		}
 
@@ -408,7 +408,7 @@ body.dark {
 					& #add-but.active:hover, & #edit-but.active:hover, & #del-but.active:hover, & #save-but.active:hover {
 						background-color: rebeccapurple;
 						color: white;
-						filter: drop-shadow(2px 2px 2px black);
+						box-shadow: 2px 2px 2px 0 black;
 					}
 				}
 
@@ -416,7 +416,7 @@ body.dark {
 					& #add-but.active:hover, & #edit-but.active:hover, & #del-but.active:hover, & #save-but.active:hover {
 						background-color: purple;
 						color: black;
-						filter: drop-shadow(2px 2px 2px black);
+						box-shadow: 2px 2px 2px 0 black;
 					}
 				}
 			}
@@ -430,14 +430,14 @@ body.dark {
 					border-color: blueviolet;
 					background-color: blueviolet;
 					color: white;
-					filter: drop-shadow(2px 2px 2px black);
+					box-shadow: 2px 2px 2px 0 black;
 				}
 
 				& #download.dark:hover {
 					border-color: purple;
 					color: black;
 					background-color: purple;
-					filter: drop-shadow(3px 3px 3px black);
+					box-shadow: 3px 3px 3px 0 black;
 				}
 			}
 		}
@@ -454,13 +454,13 @@ body.dark {
 			& #amount.touch {
 				background-color: rebeccapurple;
 				color: white;
-				filter: drop-shadow(2px 2px 2px black);
+				box-shadow: 2px 2px 2px 0 black;
 			}
 
 			& #amount.dark.touch{
 				color: black;
 				background-color: purple;
-				filter: drop-shadow(3px 3px 3px black);
+				box-shadow: 3px 3px 3px 0 black;
 			}
 		}
 
@@ -472,7 +472,7 @@ body.dark {
 					& #add-but.active.touch, & #edit-but.active.touch, & #del-but.active.touch, & #save-but.active.touch {
 						background-color: rebeccapurple;
 						color: white;
-						filter: drop-shadow(2px 2px 2px black);
+						box-shadow: 2px 2px 2px 0 black;
 					}
 				}
 
@@ -480,7 +480,7 @@ body.dark {
 					& #add-but.active.touch, & #edit-but.active.touch, & #del-but.active.touch, & #save-but.active.touch {
 						background-color: purple;
 						color: black;
-						filter: drop-shadow(2px 2px 2px black);
+						box-shadow: 2px 2px 2px 0 black;
 					}
 				}
 			}
@@ -494,14 +494,14 @@ body.dark {
 					border-color: blueviolet;
 					background-color: blueviolet;
 					color: white;
-					filter: drop-shadow(2px 2px 2px black);
+					box-shadow: 2px 2px 2px 0 black;
 				}
 
 				& #download.dark.touch {
 					border-color: purple;
 					color: black;
 					background-color: purple;
-					filter: drop-shadow(3px 3px 3px black);
+					box-shadow: 3px 3px 3px 0 black;
 				}
 			}
 		}
