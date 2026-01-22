@@ -381,7 +381,7 @@ body.dark {
 	background-color: rgb(59, 20, 96);
 }
 
-@media (hover: hover) and (pointer: fine) {
+/* @media (hover: hover) and (pointer: fine) {
 
 	body {
 
@@ -442,7 +442,7 @@ body.dark {
 			}
 		}
 	}
-}
+} */
 
 
 @media (hover: none), (pointer: coarse){
