@@ -49,24 +49,24 @@ body {
 
 			cursor: pointer;
 
-			box-shadow: 1px 1px 1px 0 rebeccapurple;
+			filter: drop-shadow(1px 1px 1px rebeccapurple);
 		}
 
 		& #amount.inactive {
 			pointer-events: none;
 			border-color: gray;
 			opacity: 50%;
-			box-shadow: 1px 1px 1px 0 black;
+			filter: drop-shadow(1px 1px 1px black);
 		}
 
 		& #amount.dark {
 			color: white;
 			border: 3px solid purple;
-			box-shadow: 2px 2px 2px 0 black;
+			filter: drop-shadow(2px 2px 2px black);
 		}
 
 		& #amount.dark.inactive {
-			box-shadow: 1px 1px 1px 0 black;
+			filter: drop-shadow(1px 1px 1px black);
 		}
 
 		& .select-text {
@@ -185,7 +185,7 @@ body {
 
 					border-radius: 5px;
 
-					box-shadow: 1px 1px 1px 0 black;
+					filter: drop-shadow(1px 1px 1px black);
 				}
 
 				& #add-but.active, & #edit-but.active, & #del-but.active, & #save-but.active {
@@ -194,7 +194,7 @@ body {
 					opacity: 100%;
 					cursor: pointer;
 
-					box-shadow: 1px 1px 1px 0 rebeccapurple;
+					filter: drop-shadow(1px 1px 1px rebeccapurple);
 				}
 			}
 
@@ -204,13 +204,13 @@ body {
 
 					color: grey;
 					opacity: 50%;
-					box-shadow: 1px 1px 1px 0 black;
+					filter: drop-shadow(1px 1px 1px black);
 				}
 
 				& #add-but.active, & #edit-but.active, & #del-but.active, & #save-but.active {
 					color: purple;
 					opacity: 100%;
-					box-shadow: 1px 1px 1px 0 black;
+					filter: drop-shadow(1px 1px 1px black);
 				}
 			}
 
@@ -365,13 +365,13 @@ body {
 
 				cursor: pointer;
 
-				box-shadow: 1px 1px 1px 0 black;
+				filter: drop-shadow(1px 1px 1px black);
 			}
 
 			& #download.dark {
 				color: white;
 				border-color: purple;
-				box-shadow: 2px 2px 2px 0 black;
+				filter: drop-shadow(2px 2px 2px black);
 			}
 		}
 	}
@@ -390,13 +390,13 @@ body.dark {
 			& #amount:hover {
 				background-color: rebeccapurple;
 				color: white;
-				box-shadow: 2px 2px 2px 0 black;
+				filter: drop-shadow(2px 2px 2px black);
 			}
 
 			& #amount.dark:hover {
 				color: black;
 				background-color: purple;
-				box-shadow: 3px 3px 3px 0 black;
+				filter: drop-shadow(3px 3px 3px black);
 			}
 		}
 
@@ -408,7 +408,7 @@ body.dark {
 					& #add-but.active:hover, & #edit-but.active:hover, & #del-but.active:hover, & #save-but.active:hover {
 						background-color: rebeccapurple;
 						color: white;
-						box-shadow: 2px 2px 2px 0 black;
+						filter: drop-shadow(2px 2px 2px black);
 					}
 				}
 
@@ -416,7 +416,7 @@ body.dark {
 					& #add-but.active:hover, & #edit-but.active:hover, & #del-but.active:hover, & #save-but.active:hover {
 						background-color: purple;
 						color: black;
-						box-shadow: 2px 2px 2px 0 black;
+						filter: drop-shadow(2px 2px 2px black);
 					}
 				}
 			}
@@ -430,14 +430,14 @@ body.dark {
 					border-color: blueviolet;
 					background-color: blueviolet;
 					color: white;
-					box-shadow: 2px 2px 2px 0 black;
+					filter: drop-shadow(2px 2px 2px black);
 				}
 
 				& #download.dark:hover {
 					border-color: purple;
 					color: black;
 					background-color: purple;
-					box-shadow: 3px 3px 3px 0 black;
+					filter: drop-shadow(3px 3px 3px black);
 				}
 			}
 		}
