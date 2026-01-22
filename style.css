@@ -469,7 +469,7 @@ body.dark {
 			& > div {
 
 				& aside.controls {
-					& #add-but.active:active, & #edit-but.active:active, & #del-but.active:active, & #save-but.active:active {
+					& #add-but.active.touch, & #edit-but.active.touch, & #del-but.active.touch, & #save-but.active.touch {
 						background-color: rebeccapurple;
 						color: white;
 						filter: drop-shadow(2px 2px 2px black);
@@ -477,7 +477,7 @@ body.dark {
 				}
 
 				& aside.controls.dark {
-					& #add-but.active:active, & #edit-but.active:active, & #del-but.active:active, & #save-but.active:active {
+					& #add-but.active.touch, & #edit-but.active.touch, & #del-but.active.touch, & #save-but.active.touch {
 						background-color: purple;
 						color: black;
 						filter: drop-shadow(2px 2px 2px black);
@@ -490,14 +490,14 @@ body.dark {
 
 			& > div {
 
-				& #download:active {
+				& #download.touch {
 					border-color: blueviolet;
 					background-color: blueviolet;
 					color: white;
 					filter: drop-shadow(2px 2px 2px black);
 				}
 
-				& #download.dark:active {
+				& #download.dark.touch {
 					border-color: purple;
 					color: black;
 					background-color: purple;

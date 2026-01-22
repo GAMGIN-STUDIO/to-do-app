@@ -13,6 +13,10 @@ const allSelected = {
 // button for adding new to-dos
 const addBut = document.getElementById("add-but");
 addBut.addEventListener("click", () => {
+	addBut.classList.add("touch");
+	setTimeout(()=> {
+		addBut.classList.remove("touch"); // better than :hover on touch screens
+	}, 100);
 	const contentBox = document.getElementById("input-content");
 	if(contentBox.value === ""){
 		// if don't have empty class, add it and after timer delete it
@@ -31,6 +35,10 @@ addBut.addEventListener("click", () => {
 // button for deleting existing to-dos
 const delBut = document.getElementById("del-but");
 delBut.addEventListener("click", () => {
+	delBut.classList.add("touch");
+	setTimeout(()=> {
+		delBut.classList.remove("touch"); // better than :hover on touch screens
+	}, 100);
 	// just delete all selected from UI and data as well - for the first data part
 	const fullData = callData();
 	fullData.list = fullData.list.filter((dataObject) => {
@@ -63,6 +71,10 @@ delBut.addEventListener("click", () => {
 // button for editing existing to-dos
 const editBut = document.getElementById("edit-but");
 editBut.addEventListener("click", () => {
+	editBut.classList.add("touch");
+	setTimeout(()=> {
+		editBut.classList.remove("touch"); // better than :hover on touch screens
+	}, 100);
 	// prepare for editing
 	const contentBox = document.getElementById("input-content");
 	const editedTask = globalObject.listSelected[0].children[1];
@@ -73,6 +85,10 @@ editBut.addEventListener("click", () => {
 // button for completing editing procces
 const saveBut = document.getElementById("save-but");
 saveBut.addEventListener("click", () => {
+	saveBut.classList.add("touch");
+	setTimeout(()=> {
+		saveBut.classList.remove("touch"); // better than :hover on touch screens
+	}, 100);
 	const contentBox = document.getElementById("input-content");
 	// becareful
 	if(contentBox.value !== ''){
@@ -317,8 +333,8 @@ const selectText = document.querySelector(".select-text");
 amountSelect.addEventListener("click", () => {
 	amountSelect.classList.add("touch");
 	setTimeout(()=> {
-		amountSelect.classList.remove("touch");
-	}, 250);
+		amountSelect.classList.remove("touch"); // better than :hover on touch screens
+	}, 100);
 	const fullData = callData();
 	for(const dataObject of fullData.list){
 		const taskDiv = document.getElementById(`${dataObject.id}`);
@@ -345,7 +361,12 @@ refresh.addEventListener("click", () => {
 	location.reload();
 });
 
-download.addEventListener("click", () => {
+const downloadBut = document.getElementById("download");
+downloadBut.addEventListener("click", () => {
+	downloadBut.classList.add("touch");
+	setTimeout(()=> {
+		downloadBut.classList.remove("touch"); // better than :hover on touch screens
+	}, 100);
   html2canvas(document.querySelector("main")).then(canvas => {
     const link = document.createElement("a");
     link.download = "to-dos.png";
