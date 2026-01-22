@@ -390,13 +390,13 @@ body.dark {
 			& #amount:hover {
 				background-color: rebeccapurple;
 				color: white;
-				filter: drop-shadow(2px 2px 2px black);
+				box-shadow: 2px 2px 2px 0 black;
 			}
 
 			& #amount.dark:hover {
 				color: black;
 				background-color: purple;
-				filter: drop-shadow(3px 3px 3px black);
+				box-shadow: 3px 3px 3px 0 black;
 			}
 		}
 
@@ -408,7 +408,7 @@ body.dark {
 					& #add-but.active:hover, & #edit-but.active:hover, & #del-but.active:hover, & #save-but.active:hover {
 						background-color: rebeccapurple;
 						color: white;
-						filter: drop-shadow(2px 2px 2px black);
+						box-shadow: 2px 2px 2px 0 black;
 					}
 				}
 
@@ -416,7 +416,7 @@ body.dark {
 					& #add-but.active:hover, & #edit-but.active:hover, & #del-but.active:hover, & #save-but.active:hover {
 						background-color: purple;
 						color: black;
-						filter: drop-shadow(2px 2px 2px black);
+						box-shadow: 2px 2px 2px 0 black;
 					}
 				}
 			}
@@ -430,14 +430,14 @@ body.dark {
 					border-color: blueviolet;
 					background-color: blueviolet;
 					color: white;
-					filter: drop-shadow(2px 2px 2px black);
+					box-shadow: 2px 2px 2px 0 black;
 				}
 
 				& #download.dark:hover {
 					border-color: purple;
 					color: black;
 					background-color: purple;
-					filter: drop-shadow(3px 3px 3px black);
+					box-shadow: 3px 3px 3px 0 black;
 				}
 			}
 		}
