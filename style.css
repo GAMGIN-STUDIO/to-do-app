@@ -444,20 +444,6 @@ body.dark {
 	}
 }
 
-@keyframes amount {
-	50% {
-		background-color: rebeccapurple;
-		color: white;
-		filter: drop-shadow(2px 2px 2px black);
-	}
-	100% {
-		background-color: white;
-		border: 3px solid rebeccapurple;
-		color: black;
-		filter: drop-shadow(1px 1px 1px rebeccapurple);
-	}
-}
-
 
 @media (hover: none), (pointer: coarse){
 
@@ -465,14 +451,13 @@ body.dark {
 
 		& header {
 
-			& #amount:active {
-/* 				background-color: rebeccapurple;
+			& #amount.touch {
+				background-color: rebeccapurple;
 				color: white;
-				filter: drop-shadow(2px 2px 2px black); */
-				animation: amount 0.5s ;
+				filter: drop-shadow(2px 2px 2px black);
 			}
 
-			& #amount.dark:active {
+			& #amount.dark.touch{
 				color: black;
 				background-color: purple;
 				filter: drop-shadow(3px 3px 3px black);

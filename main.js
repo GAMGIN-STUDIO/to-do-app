@@ -315,6 +315,10 @@ $("#sortable").sortable({
 const amountSelect = document.querySelector("#amount");
 const selectText = document.querySelector(".select-text");
 amountSelect.addEventListener("click", () => {
+	amountSelect.classList.add("touch");
+	setTimeout(()=> {
+		amountSelect.classList.remove("touch");
+	}, 250);
 	const fullData = callData();
 	for(const dataObject of fullData.list){
 		const taskDiv = document.getElementById(`${dataObject.id}`);
