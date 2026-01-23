@@ -13,10 +13,6 @@ const allSelected = {
 // button for adding new to-dos
 const addBut = document.getElementById("add-but");
 addBut.addEventListener("click", () => {
-	addBut.classList.add("touch");
-	setTimeout(()=> {
-		addBut.classList.remove("touch"); // better than :hover on touch screens
-	}, 100);
 	const contentBox = document.getElementById("input-content");
 	if(contentBox.value === ""){
 		// if don't have empty class, add it and after timer delete it
@@ -30,15 +26,16 @@ addBut.addEventListener("click", () => {
 		addElem(contentBox.value, undefined);
 		contentBox.value = "";
 	}
+	// touch managment for touch devices
+	addBut.classList.add("touch");
+	setTimeout(()=> {
+		addBut.classList.remove("touch"); // better than :hover on touch screens
+	}, 100);
 });
 
 // button for deleting existing to-dos
 const delBut = document.getElementById("del-but");
 delBut.addEventListener("click", () => {
-	delBut.classList.add("touch");
-	setTimeout(()=> {
-		delBut.classList.remove("touch"); // better than :hover on touch screens
-	}, 100);
 	// just delete all selected from UI and data as well - for the first data part
 	const fullData = callData();
 	fullData.list = fullData.list.filter((dataObject) => {
@@ -64,31 +61,38 @@ delBut.addEventListener("click", () => {
 	const amount = document.getElementById('amount');
 	amount.innerText = fullData.amount; // don't forget about amount DOM managment
 	globalObject.listSelected = []; // don't forget clean the array after removing all selected from DOM
-	countSelected(); // and also delBut, editBut allowing managment
-
+	// better UX behavior for selectAll button
+	const selectTextSpan = document.querySelector(".select-text");
+	if(fullData.list.length == 0){
+		allSelected.all = false;
+		selectTextSpan.innerHTML = "Select<br>All";
+	}
+	// touch managment for touch devices
+	delBut.classList.add("touch");
+	setTimeout(()=> {
+		delBut.classList.remove("touch"); // better than :hover on touch screens
+		countSelected(); // and also delBut, editBut allowing managment
+	}, 100);
 });
 
 // button for editing existing to-dos
 const editBut = document.getElementById("edit-but");
 editBut.addEventListener("click", () => {
-	editBut.classList.add("touch");
-	setTimeout(()=> {
-		editBut.classList.remove("touch"); // better than :hover on touch screens
-	}, 100);
 	// prepare for editing
 	const contentBox = document.getElementById("input-content");
 	const editedTask = globalObject.listSelected[0].children[1];
 	contentBox.value = editedTask.innerText;
-	strictMode(true);
+	// touch managment for touch devices
+	editBut.classList.add("touch");
+	setTimeout(()=> {
+		editBut.classList.remove("touch"); // better than :hover on touch screens
+		strictMode(true);
+	}, 100);
 });
 
 // button for completing editing procces
 const saveBut = document.getElementById("save-but");
 saveBut.addEventListener("click", () => {
-	saveBut.classList.add("touch");
-	setTimeout(()=> {
-		saveBut.classList.remove("touch"); // better than :hover on touch screens
-	}, 100);
 	const contentBox = document.getElementById("input-content");
 	// becareful
 	if(contentBox.value !== ''){
@@ -107,7 +111,12 @@ saveBut.addEventListener("click", () => {
 	}
 	// end of editing
 	contentBox.value = '';
-	strictMode(false);
+	// touch managment for touch devices
+	saveBut.classList.add("touch");
+	setTimeout(()=> {
+		saveBut.classList.remove("touch"); // better than :hover on touch screens
+		strictMode(false);
+	}, 100);
 });
 
 
@@ -181,7 +190,7 @@ function countSelected(){
 		delBut.classList.remove("active");
 		editBut.classList.remove("active");
 	}
-}
+};
 
 function strictMode(isOn){
 	const amountSelect = document.getElementById("amount");
@@ -203,7 +212,7 @@ function strictMode(isOn){
 		addBut.classList.add("active");
 		amountSelect.classList.remove("inactive");
 	}
-}
+};
 
 
 
@@ -336,24 +345,29 @@ amountSelect.addEventListener("click", () => {
 		amountSelect.classList.remove("touch"); // better than :hover on touch screens
 	}, 100);
 	const fullData = callData();
-	for(const dataObject of fullData.list){
-		const taskDiv = document.getElementById(`${dataObject.id}`);
-		if(allSelected.all === true){
-			taskDiv.classList.remove("selected");
-		}else{
-			taskDiv.classList.add("selected");
-			globalObject.listSelected.push(taskDiv);
+	if(fullData.list.length > 0){
+		for(const dataObject of fullData.list){
+			const taskDiv = document.getElementById(`${dataObject.id}`);
+			if(allSelected.all === true){
+				taskDiv.classList.remove("selected");
+			}else{
+				taskDiv.classList.add("selected");
+				globalObject.listSelected.push(taskDiv);
+			}
 		}
-	}
-	if(allSelected.all === true){
-		globalObject.listSelected = [];
-		allSelected.all = false;
-		selectText.innerHTML = "Select<br>All"
+		if(allSelected.all === true){
+			globalObject.listSelected = [];
+			allSelected.all = false;
+			selectText.innerHTML = "Select<br>All";
+		}else{
+			allSelected.all = true;
+			selectText.innerHTML = "Unselect<br>All";
+		}
+		countSelected();
 	}else{
-		allSelected.all = true;
-		selectText.innerHTML = "Unselect<br>All"
+		alert("There is nothing to select..");
 	}
-	countSelected();
+
 });
 
 const refresh = document.getElementById("refresh");
