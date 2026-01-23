@@ -13,6 +13,12 @@ const allSelected = {
 // button for adding new to-dos
 const addBut = document.getElementById("add-but");
 addBut.addEventListener("click", () => {
+	// touch managment for touch devices
+	addBut.classList.add("touch");
+	setTimeout(()=> {
+		addBut.classList.remove("touch"); // better than :hover on touch screens
+	}, 100);
+	// add managment
 	const contentBox = document.getElementById("input-content");
 	if(contentBox.value === ""){
 		// if don't have empty class, add it and after timer delete it
@@ -26,11 +32,6 @@ addBut.addEventListener("click", () => {
 		addElem(contentBox.value, undefined);
 		contentBox.value = "";
 	}
-	// touch managment for touch devices
-	addBut.classList.add("touch");
-	setTimeout(()=> {
-		addBut.classList.remove("touch"); // better than :hover on touch screens
-	}, 100);
 });
 
 // button for deleting existing to-dos
@@ -367,7 +368,6 @@ amountSelect.addEventListener("click", () => {
 	}else{
 		alert("There is nothing to select..");
 	}
-
 });
 
 const refresh = document.getElementById("refresh");
