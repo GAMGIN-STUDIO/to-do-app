@@ -62,12 +62,6 @@ delBut.addEventListener("click", () => {
 	const amount = document.getElementById('amount');
 	amount.innerText = fullData.amount; // don't forget about amount DOM managment
 	globalObject.listSelected = []; // don't forget clean the array after removing all selected from DOM
-	// better UX behavior for selectAll button
-	const selectTextSpan = document.querySelector(".select-text");
-	if(fullData.list.length == 0){
-		allSelected.all = false;
-		selectTextSpan.innerHTML = "Select<br>All";
-	}
 	// touch managment for touch devices
 	delBut.classList.add("touch");
 	setTimeout(()=> {
@@ -190,6 +184,8 @@ function countSelected(){
 	}else{
 		delBut.classList.remove("active");
 		editBut.classList.remove("active");
+		// better UX behavior for selectAll button
+		selectAllFunc();
 	}
 };
 
@@ -212,6 +208,8 @@ function strictMode(isOn){
 		saveBut.classList.remove("active");
 		addBut.classList.add("active");
 		amountSelect.classList.remove("inactive");
+		// better UX behavior for selectAll button
+		selectAllFunc();
 	}
 };
 
@@ -358,8 +356,7 @@ amountSelect.addEventListener("click", () => {
 		}
 		if(allSelected.all === true){
 			globalObject.listSelected = [];
-			allSelected.all = false;
-			selectText.innerHTML = "Select<br>All";
+			selectAllFunc();
 		}else{
 			allSelected.all = true;
 			selectText.innerHTML = "Unselect<br>All";
@@ -369,6 +366,12 @@ amountSelect.addEventListener("click", () => {
 		alert("There is nothing to select..");
 	}
 });
+
+function selectAllFunc(){
+	const selectTextSpan = document.querySelector(".select-text");
+	allSelected.all = false;
+	selectTextSpan.innerHTML = "Select<br>All";
+};
 
 const refresh = document.getElementById("refresh");
 refresh.addEventListener("click", () => {
